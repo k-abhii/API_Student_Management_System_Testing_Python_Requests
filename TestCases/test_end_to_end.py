@@ -15,6 +15,18 @@ def test_add_data():
     response = requests.post(tech_url,request_js)
     print(response.text)
 
+    add_api_url = "https://thetestingworldapi.com/api/addresses"
+    f2 = open("C:/Users/hp/PycharmProjects/API_Student_Management_System/TestCases/address.json","r")
+    req_json = json.loads(f2.read())
+    res = requests.post(add_api_url,req_json)
+    print(res.text)
+
+    filal_details = "https://thetestingworldapi.com/api/FinalStudentDetails/10056960"
+    response = requests.get(filal_details)
+    print(response.text)
+
+
+
 
 
 
