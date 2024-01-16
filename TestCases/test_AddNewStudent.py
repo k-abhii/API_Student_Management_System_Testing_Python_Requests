@@ -27,6 +27,71 @@ def test_update_details():
     request_json = json.loads(f.read())
     response = requests.put(API_URL,request_json)
     print(response.text)
-    
+#
+# platform win32 -- Python 3.8.2, pytest-7.4.4, pluggy-0.13.1 -- c:\python38\python.exe
+# cachedir: .pytest_cache
+# metadata: {'Python': '3.8.2', 'Platform': 'Windows-10-10.0.19041-SP0', 'Packages': {'pytest': '7.4.4', 'pluggy': '0.13.1'}, 'Plugins': {'allure-pytest': '2.13.2', 'html': '4.1.1', 'metadata': '3.0.0', 'xdist': '3.5.0'}}
+# rootdir: C:\Users\hp\PycharmProjects\API_Student_Management_System
+# plugins: allure-pytest-2.13.2, html-4.1.1, metadata-3.0.0, xdist-3.5.0
+# collected 3 items
+#
+# TestCases/test_AddNewStudent.py::test_add_new_student {"id":10056937,"first_name":"Testing","middle_name":"K","last_name":"World","date_of_birth":"12/12/1998"}
+# PASSED
+# TestCases/test_AddNewStudent.py::test_get_student_data {"status":"true","data":{"id":10056912,"first_name":"Testing","middle_name":"K","last_name":"World","date_of_birth":"12/12/1998"}}
+# [10056912]
+# PASSED
+# TestCases/test_AddNewStudent.py::test_update_details {"status":"true","msg":"update  data success"}
+# PASSED
 
+# C:\Users\hp\PycharmProjects\API_Student_Management_System>pytest -s -v
+# ========================================================================= test session starts =========================================================================
+# platform win32 -- Python 3.8.2, pytest-7.4.4, pluggy-0.13.1 -- c:\python38\python.exe
+# cachedir: .pytest_cache
+# metadata: {'Python': '3.8.2', 'Platform': 'Windows-10-10.0.19041-SP0', 'Packages': {'pytest': '7.4.4', 'pluggy': '0.13.1'}, 'Plugins': {'allure-pytest': '2.13.2', 'html': '4.1.1', 'metadata': '3.0.0', 'xdist': '3.5.0'}}
+# rootdir: C:\Users\hp\PycharmProjects\API_Student_Management_System
+# plugins: allure-pytest-2.13.2, html-4.1.1, metadata-3.0.0, xdist-3.5.0
+# collected 3 items
+#
+# TestCases/test_AddNewStudent.py::test_add_new_student {"id":10056938,"first_name":"Testing","middle_name":"K","last_name":"World","date_of_birth":"12/12/1998"}
+# PASSED
+# TestCases/test_AddNewStudent.py::test_get_student_data {"status":"true","data":{"id":10056912,"first_name":"Testing","middle_name":"K2","last_name":"The World","date_of_birth":"12/12/2000"}}
+# [10056912]
+# PASSED
+# TestCases/test_AddNewStudent.py::test_update_details {"status":"true","msg":"update  data success"}
+# PASSED
 
+# Validating Data is updated or not using get request
+def test_get_s_data():
+    API_URL ="https://thetestingworldapi.com/api/studentsDetails/10056912"
+    response = requests.get(API_URL)
+    json_response = response.json()
+    print(json_response)
+    id = jsonpath.jsonpath(json_response,'data.id')
+    print(id)
+    assert id[0] ==10056912
+    middle_name = jsonpath.jsonpath(json_response,'data.middle_name')
+    assert middle_name[0] == "K2"
+    dob = jsonpath.jsonpath(json_response,'data.date_of_birth')
+    assert dob[0] == '12/12/2000'
+
+# C:\Users\hp\PycharmProjects\API_Student_Management_System>pytest -s -v
+# ================================================= test session starts =================================================
+# platform win32 -- Python 3.8.2, pytest-7.4.4, pluggy-0.13.1 -- c:\python38\python.exe
+# cachedir: .pytest_cache
+# metadata: {'Python': '3.8.2', 'Platform': 'Windows-10-10.0.19041-SP0', 'Packages': {'pytest': '7.4.4', 'pluggy': '0.13.1'}, 'Plugins': {'allure-pytest': '2.13.2', 'html': '4.1.1', 'metadata': '3.0.0', 'xdist': '3.5.0'}}
+# rootdir: C:\Users\hp\PycharmProjects\API_Student_Management_System
+# plugins: allure-pytest-2.13.2, html-4.1.1, metadata-3.0.0, xdist-3.5.0
+# collected 4 items
+#
+# TestCases/test_AddNewStudent.py::test_add_new_student {"id":10056951,"first_name":"Testing","middle_name":"K","last_name":"World","date_of_birth":"12/12/1998"}
+# PASSED
+# TestCases/test_AddNewStudent.py::test_get_student_data {"status":"true","data":{"id":10056912,"first_name":"Testing","middle_name":"K2","last_name":"The World","date_of_birth":"12/12/2000"}}
+# [10056912]
+# PASSED
+# TestCases/test_AddNewStudent.py::test_update_details {"status":"true","msg":"update  data success"}
+# PASSED
+# TestCases/test_AddNewStudent.py::test_get_s_data {'status': 'true', 'data': {'id': 10056912, 'first_name': 'Testing', 'middle_name': 'K2', 'last_name': 'The World', 'date_of_birth': '12/12/2000'}}
+# [10056912]
+# PASSED
+#
+# ================================================== 4 passed in 4.85s ==================================================
