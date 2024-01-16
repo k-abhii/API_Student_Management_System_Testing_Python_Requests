@@ -95,3 +95,32 @@ def test_get_s_data():
 # PASSED
 #
 # ================================================== 4 passed in 4.85s ==================================================
+
+def test_delete_student():
+    API_URL = "https://thetestingworldapi.com/api/studentsDetails/10056912"
+    response = requests.delete(API_URL)
+    print(response.text)
+
+# C:\Users\hp\PycharmProjects\API_Student_Management_System>pytest -s -v
+# ========================================================================= test session starts =========================================================================
+# platform win32 -- Python 3.8.2, pytest-7.4.4, pluggy-0.13.1 -- c:\python38\python.exe
+# cachedir: .pytest_cache
+# metadata: {'Python': '3.8.2', 'Platform': 'Windows-10-10.0.19041-SP0', 'Packages': {'pytest': '7.4.4', 'pluggy': '0.13.1'}, 'Plugins': {'allure-pytest': '2.13.2', 'html': '4.1.1', 'metadata': '3.0.0', 'xdist': '3.5.0'}}
+# rootdir: C:\Users\hp\PycharmProjects\API_Student_Management_System
+# plugins: allure-pytest-2.13.2, html-4.1.1, metadata-3.0.0, xdist-3.5.0
+# collected 5 items
+#
+# TestCases/test_AddNewStudent.py::test_add_new_student {"id":10056952,"first_name":"Testing","middle_name":"K","last_name":"World","date_of_birth":"12/12/1998"}
+# PASSED
+# TestCases/test_AddNewStudent.py::test_get_student_data {"status":"true","data":{"id":10056912,"first_name":"Testing","middle_name":"K2","last_name":"The World","date_of_birth":"12/12/2000"}}
+# [10056912]
+# PASSED
+# TestCases/test_AddNewStudent.py::test_update_details {"status":"true","msg":"update  data success"}
+# PASSED
+# TestCases/test_AddNewStudent.py::test_get_s_data {'status': 'true', 'data': {'id': 10056912, 'first_name': 'Testing', 'middle_name': 'K2', 'last_name': 'The World', 'date_of_birth': '12/12/2000'}}
+# [10056912]
+# PASSED
+# TestCases/test_AddNewStudent.py::test_delete_student {"status":"true","msg":"Delete  data success"}
+# PASSED
+#
+# ========================================================================== 5 passed in 3.00s ======
